@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Havas Group Bangladesh — Meaningful connections that matter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@700;800&family=Caveat:wght@600;700&family=Inter:wght@400;500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      :root {
+        --x-red: #e30613; --x-orange: #f39200; --x-green: #3aaa35; --x-blue: #1d71b8;
+        --x-ink: #141414; --x-bg: #faf6f0; --x-cream: #f2ece3;
+        --x-display: "Anton", Impact, sans-serif;
+        --x-sec: "Archivo", system-ui, sans-serif;
+        --x-body: "Inter", system-ui, sans-serif;
+        --x-hand: "Caveat", cursive;
+        --x-ease: cubic-bezier(.2,.8,.2,1);
+        --x-bounce: cubic-bezier(.34,1.56,.64,1);
+        --x-pad: clamp(18px, 4vw, 56px);
+        color-scheme: light;
+      }
+      html { scroll-behavior: smooth; }
+      body { background: var(--x-bg); color: var(--x-ink); font: 400 16px/1.6 var(--x-body); }
+      .page { max-width: none; padding: 0; display: block; overflow-x: clip; }
+      html, body { overflow-x: clip; }
+      .x-pill.x-orange, .x-hero__pills2 .x-pill.x-orange, .x-pill.x-green { color: var(--x-ink); }
+      .x-svc__row.is-open { background: var(--c); }
+      .x-svc__row.is-open[style*="orange"], .x-svc__row.is-open[style*="green"] { color: var(--x-ink); }
+      .x-svc__row.is-open[style*="orange"] .x-svc__icon, .x-svc__row.is-open[style*="green"] .x-svc__icon { background: var(--x-ink); color: #fff; }
+      .x-foot__contact a, .x-ov__info a { display: inline-flex; align-items: center; min-height: 44px; }
+      .x-foot ul a { min-height: 44px; min-width: 44px; }
+      .x-ov__social a { min-height: 44px; }
+      body.x-lock { overflow: hidden; }
+      .x-wrap { max-width: 1320px; margin: 0 auto; padding-inline: var(--x-pad); }
+      .x-display { font-family: var(--x-display); text-transform: uppercase; line-height: .88; letter-spacing: -.01em; font-weight: 400; }
+
+      /* buttons & pills */
+      .x-btn { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 6px 6px 6px 22px; border-radius: 999px; background: var(--x-ink); color: #fff; font: 700 15px/1 var(--x-sec); text-decoration: none; border: 0; cursor: pointer; transition: transform .25s var(--x-ease), background .2s; will-change: transform; }
+      .x-btn__arrow { width: 36px; height: 36px; border-radius: 50%; background: var(--x-red); display: grid; place-items: center; transition: transform .3s var(--x-bounce); flex: none; }
+      .x-btn__arrow svg { width: 16px; height: 16px; }
+      .x-btn:hover .x-btn__arrow { transform: translateX(4px) rotate(-45deg); }
+      .x-btn--red { background: var(--x-red); }
+      .x-btn--red .x-btn__arrow { background: #fff; color: var(--x-red); }
+      .x-btn--big { font-size: 20px; min-height: 64px; padding-left: 30px; }
+      .x-btn--big .x-btn__arrow { width: 52px; height: 52px; }
+      .x-pill { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 16px; border-radius: 999px; font: 700 14px/1 var(--x-sec); color: #fff; background: var(--x-ink); white-space: nowrap; }
+      .x-pill--line { background: transparent; color: var(--x-ink); border: 2px solid var(--x-ink); }
+      .x-red { background: var(--x-red); } .x-orange { background: var(--x-orange); } .x-green { background: var(--x-green); } .x-blue { background: var(--x-blue); }
+      .x-label { display: inline-flex; align-items: center; gap: 10px; font: 800 14px/1 var(--x-sec); text-transform: uppercase; letter-spacing: .08em; }
+      .x-label::before { content: ""; width: 14px; height: 14px; background: var(--c, var(--x-red)); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+      .x-h2 { font-size: clamp(56px, 10vw, 150px); margin-top: 18px; }
+      .x-hand { font-family: var(--x-hand); font-weight: 700; font-size: 26px; line-height: 1; }
+
+      /* header */
+      .x-header { position: fixed; inset: 0 0 auto; z-index: 50; transition: transform .4s var(--x-ease), background .3s; }
+      .x-header.is-hidden { transform: translateY(-110%); }
+      .x-header.is-scrolled { background: color-mix(in srgb, var(--x-bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(20,20,20,.08); }
+      .x-header__in { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding-block: 14px; }
+      .x-header__left { display: flex; gap: 8px; }
+      .x-header__left a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 15px; border-radius: 999px; border: 2px solid var(--x-ink); font: 700 14px/1 var(--x-sec); text-decoration: none; transition: background .2s, color .2s; }
+      .x-header__left a:hover { background: var(--x-ink); color: #fff; }
+      .x-header__logo img { height: 44px; width: auto; }
+      .x-header__right { display: flex; justify-content: flex-end; align-items: center; gap: 18px; }
+      .x-hours { font: 500 13px/1.3 var(--x-body); text-align: right; color: #555; }
+      .x-burger { display: none; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--x-ink); cursor: pointer; place-items: center; }
+      .x-burger span { display: block; width: 20px; height: 2px; background: #fff; margin: 3px auto; transition: transform .3s; }
+      .x-menu { position: fixed; inset: 0; z-index: 60; background: var(--x-bg); padding: 90px var(--x-pad) 40px; display: flex; flex-direction: column; justify-content: space-between; transform: translateY(-100%); transition: transform .5s var(--x-ease); visibility: hidden; }
+      .x-menu.is-open { transform: none; visibility: visible; }
+      .x-menu nav { display: flex; flex-direction: column; gap: 6px; }
+      .x-menu nav a { font-family: var(--x-display); font-size: clamp(56px, 16vw, 96px); line-height: 1; text-transform: uppercase; text-decoration: none; }
+      .x-menu nav a:nth-child(4n+1):hover { color: var(--x-red); } .x-menu nav a:nth-child(4n+2):hover { color: var(--x-orange); } .x-menu nav a:nth-child(4n+3):hover { color: var(--x-green); } .x-menu nav a:nth-child(4n+4):hover { color: var(--x-blue); }
+      .x-close { position: absolute; top: 18px; right: var(--x-pad); width: 52px; height: 52px; border-radius: 50%; border: 0; background: var(--x-ink); color: #fff; font-size: 26px; cursor: pointer; transition: transform .3s var(--x-bounce); }
+      .x-close:hover { transform: rotate(90deg); }
+
+      /* triangles */
+      .x-tri { position: absolute; width: var(--s, 28px); aspect-ratio: 1; background: var(--c); clip-path: polygon(50% 0, 100% 100%, 0 100%); animation: x-float var(--d, 7s) ease-in-out infinite alternate; pointer-events: none; opacity: .95; }
+      @keyframes x-float { from { transform: translateY(0) rotate(var(--r, 0deg)); } to { transform: translateY(-22px) rotate(calc(var(--r, 0deg) + 40deg)); } }
+
+      /* hero */
+      .x-hero { position: relative; padding-top: 120px; padding-bottom: 60px; overflow: hidden; }
+      .x-hero__grid { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: 24px; position: relative; }
+      .x-hero h1 { font-size: clamp(72px, 12.5vw, 200px); position: relative; z-index: 2; }
+      .x-line { display: block; overflow: hidden; padding-bottom: .04em; }
+      .x-line > span { display: block; transform: translateY(105%); animation: x-up .9s var(--x-ease) forwards; animation-delay: calc(.15s + var(--i) * .14s); }
+      .x-line:nth-child(2) > span { color: var(--x-red); }
+      @keyframes x-up { to { transform: none; } }
+      .x-hero__pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+      .x-hero__pills .x-pill, .x-hero__pills2 .x-pill { opacity: 0; transform: scale(0) rotate(0deg); animation: x-pop .7s var(--x-bounce) forwards; animation-delay: calc(.7s + var(--i) * .12s); }
+      .x-hero__pills2 { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; align-items: center; }
+      @keyframes x-pop { to { opacity: 1; transform: scale(1) rotate(var(--r)); } }
+      .x-hero__art { position: relative; }
+      .x-hero__art img { width: 100%; height: auto; animation: x-bob 6s ease-in-out infinite alternate; }
+      @keyframes x-bob { to { transform: translateY(-14px) rotate(1deg); } }
+      .x-hero__note { position: absolute; left: 0; bottom: 6%; transform: rotate(-6deg); color: var(--x-blue); }
+
+      /* marquee */
+      .x-marquee { background: var(--x-red); color: #fff; transform: rotate(-2deg); margin: 30px -20px 80px; overflow: hidden; padding-block: 18px; position: relative; z-index: 3; }
+      .x-marquee__track { display: flex; width: max-content; animation: x-scroll 28s linear infinite; }
+      .x-marquee:hover .x-marquee__track { animation-play-state: paused; }
+      .x-marquee__group { display: flex; align-items: center; flex: none; }
+      .x-marquee__group span { font-family: var(--x-display); font-size: clamp(34px, 5vw, 64px); text-transform: uppercase; line-height: 1; padding-inline: 22px; white-space: nowrap; }
+      .x-marquee__group i { width: 18px; height: 18px; border-radius: 50%; flex: none; border: 2px solid #fff; }
+      @keyframes x-scroll { to { transform: translateX(-50%); } }
+
+      /* reveal */
+      .x-rv { opacity: 0; transform: translateY(40px); transition: opacity .8s var(--x-ease), transform .8s var(--x-ease); transition-delay: var(--dl, 0s); }
+      .x-rv.is-in { opacity: 1; transform: none; }
+
+      section.x-sec { padding-block: clamp(70px, 10vw, 130px); position: relative; }
+
+      /* about */
+      .x-about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 90px); align-items: center; }
+      .x-about p.x-lead { font: 700 clamp(20px, 2.2vw, 28px)/1.4 var(--x-sec); margin-top: 28px; }
+      .x-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+      .x-tags .x-pill { transition: transform .3s var(--x-bounce); }
+      .x-tags .x-pill:hover { transform: rotate(-4deg) scale(1.08); }
+      .x-stack { position: relative; aspect-ratio: 1 / 1.05; max-width: 520px; margin-inline: auto; width: 100%; }
+      .x-stack figure { position: absolute; margin: 0; width: 64%; aspect-ratio: 4 / 5; background: #fff; padding: 10px 10px 40px; border-radius: 10px; box-shadow: 0 14px 40px rgba(20,20,20,.14); left: 18%; top: 8%; transition: transform 1.1s var(--x-bounce); transform: rotate(0deg); }
+      .x-stack figure img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+      .x-stack figure figcaption { position: absolute; bottom: 6px; left: 14px; font-family: var(--x-hand); font-size: 22px; font-weight: 700; }
+      .x-stack.is-in figure:nth-child(1) { transform: translate(-22%, 10%) rotate(-12deg); }
+      .x-stack.is-in figure:nth-child(2) { transform: translate(22%, -4%) rotate(9deg); transition-delay: .1s; }
+      .x-stack.is-in figure:nth-child(3) { transform: translate(0, 18%) rotate(-2deg); transition-delay: .2s; }
+      .x-stack figure:hover { z-index: 5; }
+      .x-stack__par { position: absolute; inset: 0; will-change: transform; }
+
+      /* work */
+      .x-work__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+      .x-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 32px); margin-top: 50px; }
+      .x-grid.has-cursor, .x-grid.has-cursor a { cursor: none; }
+      .x-card { text-decoration: none; display: block; }
+      .x-card__media { position: relative; aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; background: var(--x-cream); }
+      .x-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .6s var(--x-ease), transform .9s var(--x-ease); }
+      .x-card__media img.x-alt { opacity: 0; transform: scale(1.45); object-position: 70% 30%; }
+      .x-card:hover .x-card__media img:first-child { opacity: 0; transform: scale(1.08); }
+      .x-card:hover .x-card__media img.x-alt { opacity: 1; transform: scale(1.3); }
+      .x-card__cat { position: absolute; left: 16px; bottom: 16px; transform: translateY(80px); transition: transform .5s var(--x-bounce); }
+      .x-card:hover .x-card__cat, .x-card:focus-visible .x-card__cat { transform: rotate(-3deg); }
+      .x-card__info { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 16px 4px 0; }
+      .x-card__info h3 { font-family: var(--x-display); font-weight: 400; font-size: 30px; line-height: 1; text-transform: uppercase; }
+      .x-card__info p { font: 600 14px/1.2 var(--x-body); color: #555; text-align: right; }
+      .x-cursor { position: fixed; left: 0; top: 0; width: 96px; height: 96px; margin: -48px 0 0 -48px; border-radius: 50%; background: var(--x-ink); color: #fff; display: grid; place-items: center; font: 800 16px/1 var(--x-sec); text-transform: uppercase; pointer-events: none; z-index: 40; transform: scale(0); transition: transform .3s var(--x-bounce), background .3s; }
+      .x-cursor.is-on { transform: scale(1); }
+      .x-more { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 60px; padding: clamp(24px, 4vw, 44px); background: var(--x-cream); border-radius: 28px; }
+      .x-more h3 { font-family: var(--x-display); font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 4vw, 54px); line-height: .95; max-width: 620px; }
+      .x-more .x-tags { margin-top: 14px; }
+
+      /* services */
+      .x-svc { margin-top: 50px; border-top: 2px solid var(--x-ink); }
+      .x-svc__row { border-bottom: 2px solid var(--x-ink); position: relative; overflow: hidden; }
+      .x-svc__row::before { content: ""; position: absolute; inset: 0; background: var(--c); transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--x-ease); }
+      .x-svc__btn { position: relative; width: 100%; background: none; border: 0; color: inherit; cursor: pointer; display: grid; grid-template-columns: 70px 1fr 56px; align-items: center; gap: 16px; padding: 22px 8px; text-align: left; }
+      .x-svc__num { font: 800 16px/1 var(--x-sec); }
+      .x-svc__name { font-family: var(--x-display); font-size: clamp(36px, 6vw, 84px); line-height: .95; text-transform: uppercase; transition: transform .4s var(--x-ease); }
+      .x-svc__icon { width: 48px; height: 48px; border-radius: 50%; background: var(--c); display: grid; place-items: center; color: #fff; transition: transform .4s var(--x-bounce), background .3s; }
+      .x-svc__icon svg { width: 18px; }
+      .x-svc__desc { position: relative; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--x-ease); }
+      .x-svc__desc > div { overflow: hidden; }
+      .x-svc__desc p { padding: 0 8px 26px 94px; font: 700 clamp(18px, 1.8vw, 24px)/1.35 var(--x-sec); max-width: 760px; transform: translateX(-30px); opacity: 0; transition: transform .5s var(--x-ease), opacity .4s; }
+      .x-svc__row.is-open::before { transform: none; }
+      .x-svc__row.is-open { color: #fff; }
+      .x-svc__row.is-open .x-svc__name { transform: translateX(12px); }
+      .x-svc__row.is-open .x-svc__icon { background: #fff; color: var(--x-ink); transform: rotate(-45deg); }
+      .x-svc__row.is-open .x-svc__desc { grid-template-rows: 1fr; }
+      .x-svc__row.is-open .x-svc__desc p { transform: none; opacity: 1; }
+
+      /* header phone + hero extras */
+      .x-hours a { color: var(--x-ink); font-weight: 700; text-decoration: none; display: inline-block; padding-block: 10px; margin-block: -10px; }
+      .x-hours a:hover { color: var(--x-red); }
+      .x-hero__sub { font: 700 clamp(18px, 1.7vw, 22px)/1.4 var(--x-sec); max-width: 580px; margin-top: 24px; }
+      .x-hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+      .x-btn--ghost { background: transparent; color: var(--x-ink); box-shadow: inset 0 0 0 2px var(--x-ink); }
+      .x-btn--ghost:hover { background: var(--x-ink); color: #fff; }
+      .x-btn--play .x-btn__arrow svg { width: 13px; height: 13px; margin-left: 2px; }
+      .x-btn--play:hover .x-btn__arrow { transform: scale(1.12); }
+      .x-dark { color: var(--x-ink); }
+      .x-intro { font: 700 clamp(18px, 1.8vw, 24px)/1.4 var(--x-sec); max-width: 760px; margin-top: 24px; }
+      .x-about__body p { margin-top: 18px; font-size: 17px; color: #333; max-width: 620px; }
+
+      /* key facts */
+      section.x-sec.x-tight { padding-top: 0; }
+      .x-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); margin-top: 24px; }
+      .x-fact { background: var(--c); color: #fff; border-radius: 28px; padding: clamp(22px, 2.6vw, 34px); min-height: 270px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; transition: transform .4s var(--x-bounce); }
+      .x-fact:nth-child(odd) { transform: rotate(-1.2deg); } .x-fact:nth-child(even) { transform: rotate(1.2deg); }
+      .x-fact:hover { transform: rotate(0) translateY(-6px); }
+      .x-fact.x-dark { color: var(--x-ink); }
+      .x-fact__fig { font-family: var(--x-display); font-size: clamp(68px, 7.5vw, 120px); line-height: .9; font-variant-numeric: tabular-nums; }
+      .x-fact__label { font: 700 18px/1.3 var(--x-sec); }
+      .x-facts__note { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+      /* agencies */
+      .x-ag { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); margin-top: 50px; }
+      .x-ag a { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 340px; padding: 28px; border-radius: 28px; background: var(--c); color: #fff; text-decoration: none; transition: transform .4s var(--x-bounce); }
+      .x-ag a.x-dark { color: var(--x-ink); }
+      .x-ag a:hover, .x-ag a:focus-visible { transform: translateY(-8px) rotate(-1.5deg); }
+      .x-ag__arrow { width: 56px; height: 56px; border-radius: 50%; background: #fff; color: var(--x-ink); display: grid; place-items: center; align-self: flex-end; transition: transform .4s var(--x-bounce); }
+      .x-ag__arrow svg { width: 20px; }
+      .x-ag a:hover .x-ag__arrow { transform: rotate(-45deg) scale(1.08); }
+      .x-ag small { font: 800 13px/1 var(--x-sec); text-transform: uppercase; letter-spacing: .1em; }
+      .x-ag h3 { font-family: var(--x-display); font-weight: 400; text-transform: uppercase; font-size: clamp(42px, 3.8vw, 60px); line-height: .92; margin-top: 8px; }
+      .x-ag p { font: 700 17px/1.35 var(--x-sec); margin-top: 14px; }
+
+      /* video banner */
+      .x-video { position: relative; margin-top: 60px; border-radius: 28px; overflow: hidden; min-height: clamp(320px, 40vw, 520px); display: flex; align-items: flex-end; padding: clamp(24px, 4vw, 56px); color: #fff; isolation: isolate; background-color: var(--x-ink); }
+      .x-menu .x-hours a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; margin-block: 0; }
+      .x-video > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.2s var(--x-ease); }
+      .x-video:hover > img { transform: scale(1.05); }
+      .x-video::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(20,20,20,.35), rgba(20,20,20,.82)); }
+      .x-video__in { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; width: 100%; }
+      .x-video h3 { font-family: var(--x-display); font-weight: 400; text-transform: uppercase; font-size: clamp(38px, 5.2vw, 80px); line-height: .92; max-width: 780px; }
+      .x-play { width: clamp(88px, 9vw, 120px); aspect-ratio: 1; border-radius: 50%; background: var(--x-red); color: #fff; display: grid; place-items: center; position: relative; flex: none; transition: transform .4s var(--x-bounce); }
+      .x-play::after { content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 2px solid rgba(255,255,255,.7); animation: x-pulse 2s ease-out infinite; }
+      @keyframes x-pulse { from { transform: scale(.9); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
+      .x-play:hover { transform: scale(1.08); }
+      .x-play svg { width: 32%; margin-left: 6%; }
+
+      /* impress group */
+      .x-imp { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); margin-top: 50px; }
+      .x-imp article { background: var(--x-cream); border-radius: 28px; padding: 12px 12px 26px; transition: transform .4s var(--x-bounce); }
+      .x-imp article:hover { transform: translateY(-8px); }
+      .x-imp__media { aspect-ratio: 4 / 3; border-radius: 20px; background: #fff; display: grid; place-items: center; padding: 24px; overflow: hidden; }
+      .x-imp__media img { max-width: 82%; max-height: 82%; width: auto; height: auto; object-fit: contain; transition: transform .5s var(--x-bounce); }
+      .x-imp__media--small img { max-width: 46%; max-height: 46%; }
+      .x-imp article:hover .x-imp__media img, .x-imp article:hover .x-imp__media svg { transform: scale(1.06) rotate(-3deg); }
+      .x-imp__media--solid { background: var(--c); color: #fff; }
+      .x-imp__media--solid svg { width: 40%; height: auto; transition: transform .5s var(--x-bounce); }
+      .x-imp h3 { font-family: var(--x-display); font-weight: 400; text-transform: uppercase; font-size: 32px; line-height: 1; margin: 20px 10px 10px; }
+      .x-imp p { font-size: 15px; line-height: 1.5; margin: 0 10px; color: #333; }
+
+      /* team */
+      .x-team__intro { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 34px; }
+      .x-team__intro p { font: 500 17px/1.5 var(--x-body); padding-top: 18px; border-top: 2px solid var(--x-ink); }
+      .x-team { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); margin-top: 56px; }
+      .x-member { transition: transform .4s var(--x-bounce); }
+      .x-member:hover { transform: translateY(-10px); }
+      .x-member__ph { aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; background: var(--x-cream); }
+      .x-member__ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--x-ease); }
+      .x-member:hover .x-member__ph img { transform: scale(1.05); }
+      .x-member__plate { position: relative; margin: -44px 14px 0; background: var(--c); color: #fff; border-radius: 18px; padding: 14px 18px; transform: rotate(-2deg); transition: transform .4s var(--x-bounce); }
+      .x-member:nth-child(even) .x-member__plate { transform: rotate(2deg); }
+      .x-member:hover .x-member__plate { transform: rotate(0) scale(1.03); }
+      .x-member__plate.x-dark { color: var(--x-ink); }
+      .x-member h3 { font: 800 19px/1.15 var(--x-sec); }
+      .x-member p { font: 500 14px/1.3 var(--x-body); margin-top: 4px; }
+
+      /* client logos */
+      .x-logos { margin-top: 50px; display: grid; gap: 18px; }
+      .x-logos__row { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+      .x-logos__track { display: flex; width: max-content; animation: x-scroll 40s linear infinite; }
+      .x-logos__row--rev .x-logos__track { animation-direction: reverse; }
+      .x-logos__row:hover .x-logos__track { animation-play-state: paused; }
+      .x-logos__set { display: flex; gap: 18px; padding-right: 18px; flex: none; }
+      .x-logo { width: 200px; height: 112px; background: #fff; border-radius: 20px; display: grid; place-items: center; padding: 18px 26px; box-shadow: 0 6px 20px rgba(20,20,20,.05); flex: none; }
+      .x-logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(1); opacity: .7; transition: filter .3s, opacity .3s, transform .4s var(--x-bounce); }
+      .x-logo:hover img { filter: none; opacity: 1; transform: scale(1.08); }
+
+      /* news */
+      .x-news { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 32px); margin-top: 50px; }
+      .x-news a { display: block; text-decoration: none; color: inherit; transition: transform .4s var(--x-bounce); }
+      .x-news a:hover { transform: translateY(-8px); }
+      .x-news__media { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden; background: var(--x-cream); }
+      .x-news__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--x-ease); }
+      .x-news a:hover .x-news__media img { transform: scale(1.06); }
+      .x-news__media .x-pill { position: absolute; left: 16px; top: 16px; transform: rotate(-3deg); }
+      .x-news time { display: block; margin-top: 18px; font: 600 14px/1 var(--x-body); color: #555; }
+      .x-news h3 { font-family: var(--x-display); font-weight: 400; text-transform: uppercase; font-size: clamp(28px, 2.6vw, 38px); line-height: 1; margin-top: 10px; }
+      .x-news p { margin-top: 8px; color: #333; font-size: 15px; }
+      .x-news__more { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font: 800 14px/1 var(--x-sec); text-transform: uppercase; letter-spacing: .06em; }
+      .x-news__more svg { width: 14px; transition: transform .3s var(--x-bounce); }
+      .x-news a:hover .x-news__more svg { transform: translateX(4px) rotate(-45deg); }
+
+      /* footer extras */
+      .x-foot__lead { font: 700 clamp(18px, 1.8vw, 24px)/1.4 var(--x-sec); max-width: 780px; margin-top: 30px; color: #eee; }
+      .x-foot__offices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; }
+      .x-foot address a { color: #fff; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; min-height: 44px; }
+      .x-foot address a:hover, .x-foot__mail a:hover { color: var(--x-orange); }
+      .x-foot__mail a { color: #fff; font: 700 17px/1 var(--x-sec); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+      .x-ov h2 span.x-ov__small { font-size: .42em; margin-top: 10px; }
+
+      /* faq */
+      .x-faq__grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(30px, 6vw, 90px); align-items: start; }
+      .x-faq__side { position: sticky; top: 110px; }
+      .x-faq__side p { margin-top: 20px; }
+      .x-faq__item { border-bottom: 2px solid var(--x-ink); }
+      .x-faq__item:first-child { border-top: 2px solid var(--x-ink); }
+      .x-faq__q { width: 100%; background: none; border: 0; cursor: pointer; color: inherit; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 4px; text-align: left; font: 800 clamp(18px, 1.8vw, 22px)/1.3 var(--x-sec); }
+      .x-faq__ic { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--x-ink); flex: none; position: relative; transition: transform .4s var(--x-bounce), background .3s, border-color .3s; }
+      .x-faq__ic::before, .x-faq__ic::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; background: currentColor; transform: translate(-50%, -50%); transition: transform .4s var(--x-ease); }
+      .x-faq__ic::after { transform: translate(-50%, -50%) rotate(90deg); }
+      .x-faq__item.is-open .x-faq__ic { transform: rotate(180deg); background: var(--c); border-color: var(--c); color: #fff; }
+      .x-faq__item.is-open .x-faq__ic::after { transform: translate(-50%, -50%) rotate(0deg); }
+      .x-faq__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--x-ease); }
+      .x-faq__a > div { overflow: hidden; }
+      .x-faq__a p { padding: 0 60px 26px 4px; font-size: 17px; color: #333; }
+      .x-faq__item.is-open .x-faq__a { grid-template-rows: 1fr; }
+
+      /* footer */
+      .x-foot { background: var(--x-ink); color: #fff; padding-top: clamp(80px, 10vw, 140px); position: relative; overflow: hidden; }
+      .x-foot__big { font-size: clamp(64px, 13vw, 220px); }
+      .x-foot__big .x-w { display: inline-block; white-space: nowrap; }
+      .x-foot__big .x-ch { display: inline-block; transform: translateY(120%) rotate(8deg); opacity: 0; }
+      .x-foot__big.is-in .x-ch { animation: x-bounce .8s var(--x-bounce) forwards; animation-delay: calc(var(--i) * .035s); }
+      @keyframes x-bounce { to { transform: none; opacity: 1; } }
+      .x-foot__big .x-w:last-child { color: var(--x-red); }
+      .x-foot__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 30px 50px; margin-top: 50px; }
+      .x-foot__contact a { display: block; color: #fff; text-decoration: none; font: 800 clamp(20px, 2.4vw, 30px)/1.3 var(--x-sec); }
+      .x-foot__contact a:hover { color: var(--x-orange); }
+      .x-foot__contact span { font: 500 14px/1 var(--x-body); color: #bbb; display: block; margin-bottom: 4px; }
+      .x-foot__cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; margin-top: 90px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,.18); }
+      .x-chip { display: inline-block; background: #fff; border-radius: 18px; padding: 12px 18px; }
+      .x-chip img { height: 44px; width: auto; }
+      .x-foot h4 { font: 800 13px/1 var(--x-sec); text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin: 0 0 16px; }
+      .x-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+      .x-foot ul a { color: #fff; text-decoration: none; font: 700 17px/1 var(--x-sec); display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; transition: color .2s, transform .2s; }
+      .x-foot ul li:nth-child(4n+1) a:hover { color: var(--x-red); } .x-foot ul li:nth-child(4n+2) a:hover { color: var(--x-orange); } .x-foot ul li:nth-child(4n+3) a:hover { color: var(--x-green); } .x-foot ul li:nth-child(4n+4) a:hover { color: #5aa4e8; }
+      .x-foot ul a:hover { transform: translateX(6px); }
+      .x-foot address { font-style: normal; color: #ccc; font-size: 15px; }
+      .x-foot__base { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-block: 36px 70px; color: #aaa; font-size: 14px; }
+      .x-foot__base .x-hand { color: #fff; }
+      .x-foot__tris { position: absolute; left: 0; right: 0; bottom: 0; height: 40px; display: flex; }
+      .x-foot__tris i { flex: 1; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+      .x-foot__tris i:nth-child(4n+1) { background: var(--x-red); } .x-foot__tris i:nth-child(4n+2) { background: var(--x-orange); } .x-foot__tris i:nth-child(4n+3) { background: var(--x-green); } .x-foot__tris i:nth-child(4n+4) { background: var(--x-blue); }
+
+      /* contact overlay */
+      .x-ov { position: fixed; inset: 0; z-index: 80; visibility: hidden; }
+      .x-ov__scrim { position: absolute; inset: 0; background: rgba(20,20,20,.5); opacity: 0; transition: opacity .4s; }
+      .x-ov__panel { position: absolute; inset: 0; background: var(--x-bg); transform: translateX(100%); transition: transform .6s var(--x-ease); overflow-y: auto; padding: 80px var(--x-pad) 50px; }
+      .x-ov.is-open { visibility: visible; }
+      .x-ov.is-open .x-ov__scrim { opacity: 1; }
+      .x-ov.is-open .x-ov__panel { transform: none; }
+      .x-ov__grid { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: start; }
+      .x-ov h2 { font-size: clamp(64px, 10vw, 160px); }
+      .x-ov h2 span { display: block; }
+      .x-ov h2 span:nth-child(1) { color: var(--x-red); } .x-ov h2 span:nth-child(2) { color: var(--x-blue); } .x-ov h2 span:nth-child(3) { color: var(--x-green); }
+      .x-ov .x-hand { font-size: 36px; color: var(--x-orange); margin-top: 14px; display: block; transform: rotate(-3deg); }
+      .x-ov__plane { width: min(320px, 70%); margin-top: 20px; animation: x-bob 5s ease-in-out infinite alternate; }
+      .x-ov__info { display: grid; gap: 14px; margin-top: 10px; font: 700 18px/1.3 var(--x-sec); }
+      .x-ov__info a { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+      .x-ov__info span { display: block; font: 500 13px/1 var(--x-body); color: #666; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+      .x-ov__social { display: flex; gap: 8px; flex-wrap: wrap; }
+      .x-ov__social a { text-decoration: none; min-height: 44px; }
+      .x-form { background: #fff; border-radius: 28px; padding: clamp(22px, 3vw, 36px); display: grid; gap: 16px; margin-top: 30px; box-shadow: 0 10px 40px rgba(20,20,20,.06); }
+      .x-form label { font: 800 14px/1 var(--x-sec); display: grid; gap: 8px; }
+      .x-form input, .x-form textarea { font: 400 16px/1.4 var(--x-body); padding: 14px 16px; border: 2px solid var(--x-ink); border-radius: 14px; background: var(--x-bg); color: var(--x-ink); }
+      .x-form input:focus, .x-form textarea:focus { outline: none; border-color: var(--x-blue); }
+      .x-form .is-bad { border-color: var(--x-red); }
+      .x-err { color: var(--x-red); font: 600 13px/1 var(--x-body); min-height: 13px; }
+      .x-thanks { text-align: center; padding: 30px 10px; }
+      .x-thanks h3 { font-family: var(--x-display); font-weight: 400; font-size: 54px; text-transform: uppercase; color: var(--x-green); line-height: 1; }
+      .x-thanks p { margin-top: 10px; }
+
+      /* responsive */
+      @media (max-width: 1180px) {
+        .x-header__left { display: none; }
+        .x-burger { display: grid; }
+        .x-header__in { grid-template-columns: auto 1fr; }
+        .x-header__logo { order: -1; }
+      }
+      @media (max-width: 1024px) {
+        .x-grid, .x-news { grid-template-columns: repeat(2, 1fr); }
+        .x-facts, .x-ag, .x-imp, .x-team, .x-foot__offices { grid-template-columns: repeat(2, 1fr); }
+        .x-team__intro { grid-template-columns: 1fr; }
+        .x-hours { display: none; }
+        .x-foot__cols { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 820px) {
+        .x-header__right .x-btn { display: none; }
+        .x-hero__grid, .x-about__grid, .x-faq__grid, .x-ov__grid { grid-template-columns: 1fr; }
+        .x-faq__side { position: static; }
+        .x-svc__btn { grid-template-columns: 40px 1fr 48px; }
+        .x-svc__desc p { padding-left: 64px; }
+      }
+      @media (max-width: 600px) {
+        .x-grid, .x-news, .x-facts, .x-ag, .x-imp, .x-foot__offices { grid-template-columns: 1fr; }
+        .x-foot__cols { grid-template-columns: 1fr; }
+        .x-team { gap: 14px; }
+        .x-member__plate { margin: -34px 8px 0; padding: 10px 12px; }
+        .x-member h3 { font-size: 16px; }
+        .x-member p { font-size: 13px; }
+        .x-ag a { min-height: 260px; }
+        .x-logo { width: 150px; height: 90px; padding: 14px 18px; }
+        .x-svc__desc p { padding-left: 8px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .001s !important; transition-delay: 0s !important; }
+        .x-rv { opacity: 1; transform: none; }
+        .x-marquee__track, .x-logos__track { animation: none; }
+        .x-logos__row { overflow-x: auto; }
+        .x-play::after { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page" id="top">
+      <header class="x-header" id="x-header">
+        <div class="x-wrap x-header__in">
+          <nav class="x-header__left" aria-label="Main">
+            <a href="#about">About</a>
+            <a href="#partners">Partners</a>
+            <a href="#work">Work</a>
+            <a href="#team">Team</a>
+            <a href="#news">News</a>
+          </nav>
+          <a class="x-header__logo" href="#top" aria-label="Havas Group Bangladesh, home"><img src="logo.webp" alt="Havas Group Bangladesh" /></a>
+          <div class="x-header__right">
+            <p class="x-hours">Have any questions?<br /><a href="tel:+88029884481">+88029884481</a></p>
+            <button class="x-btn x-mag" type="button" data-talk>Let's Talk <span class="x-btn__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button>
+            <button class="x-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="x-menu" id="x-burger"><span></span><span></span></button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="x-hero">
+          <span class="x-tri" style="--c:#E30613;--s:34px;left:6%;top:18%;--r:12deg"></span>
+          <span class="x-tri" style="--c:#1D71B8;--s:22px;left:48%;top:14%;--r:-20deg;--d:8s"></span>
+          <span class="x-tri" style="--c:#3AAA35;--s:28px;right:5%;top:22%;--r:30deg;--d:6s"></span>
+          <span class="x-tri" style="--c:#F39200;--s:40px;left:42%;bottom:10%;--r:-8deg;--d:9s"></span>
+          <span class="x-tri" style="--c:#E30613;--s:18px;right:12%;bottom:8%;--r:50deg"></span>
+          <div class="x-wrap x-hero__grid">
+            <div>
+              <div class="x-hero__pills">
+                <span class="x-pill x-red" style="--i:0;--r:-4deg">Since 2009</span>
+                <span class="x-pill x-blue" style="--i:1;--r:3deg">Part of Impress Group</span>
+              </div>
+              <h1 class="x-display">
+                <span class="x-line"><span style="--i:0">Meaningful</span></span>
+                <span class="x-line"><span style="--i:1">Connections</span></span>
+                <span class="x-line"><span style="--i:2">That matter</span></span>
+              </h1>
+              <div class="x-hero__pills2">
+                <span class="x-pill x-green" style="--i:2;--r:-3deg">Made in Dhaka</span>
+                <span class="x-pill x-orange" style="--i:3;--r:5deg">#2 agency by RECMA</span>
+              </div>
+              <p class="x-hero__sub">To be the world's best company at creating meaningful connections between people and brands using creativity, media and innovation.</p>
+              <div class="x-hero__cta">
+                <button class="x-btn x-mag" type="button" data-talk>Get in touch <span class="x-btn__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button>
+                <a class="x-btn x-btn--ghost x-btn--play x-mag" href="https://www.youtube.com/watch?v=bixR-KIJKYM" target="_blank" rel="noopener">Watch video <span class="x-btn__arrow" aria-hidden="true" style="color:#fff"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9.5-5.5z"/></svg></span></a>
+              </div>
+            </div>
+            <div class="x-hero__art">
+              <img src="hero.webp" alt="Two cheerful creatives over a colourful triangle" />
+            </div>
+          </div>
+        </section>
+
+        <div class="x-marquee" role="note" aria-label="Advertising, media planning and buying, digital marketing, content creation, brand experiences, PR and celeb">
+          <div class="x-marquee__track" aria-hidden="true">
+            <div class="x-marquee__group">
+              <span>Advertising</span><i class="x-orange"></i><span>Media Planning &amp; Buying</span><i class="x-green"></i><span>Digital Marketing</span><i class="x-blue"></i><span>Content Creation</span><i class="x-orange"></i><span>Brand Experiences</span><i class="x-green"></i><span>PR &amp; Celeb</span><i class="x-blue"></i>
+            </div>
+            <div class="x-marquee__group">
+              <span>Advertising</span><i class="x-orange"></i><span>Media Planning &amp; Buying</span><i class="x-green"></i><span>Digital Marketing</span><i class="x-blue"></i><span>Content Creation</span><i class="x-orange"></i><span>Brand Experiences</span><i class="x-green"></i><span>PR &amp; Celeb</span><i class="x-blue"></i>
+            </div>
+          </div>
+        </div>
+
+        <section class="x-sec x-about" id="about">
+          <span class="x-tri" style="--c:#1D71B8;--s:26px;right:8%;top:8%;--r:10deg"></span>
+          <span class="x-tri" style="--c:#F39200;--s:20px;left:4%;bottom:12%;--r:-30deg;--d:8s"></span>
+          <div class="x-wrap x-about__grid">
+            <div>
+              <p class="x-label x-rv" style="--c:var(--x-green)">Who We Are</p>
+              <h2 class="x-display x-h2 x-rv">We are Havas Bangladesh</h2>
+              <p class="x-lead x-rv">We are a collective of creative and strategic communication agencies with expertise in advertising, media planning &amp; buying, digital marketing, content creation and designing brand experiences. We are an entity of Impress Group – one of the largest and most diversified conglomerates in the country, with operations in the Film, Media, Pharmaceuticals &amp; even the Garments industry.</p>
+              <div class="x-about__body x-rv">
+                <p>Each of our specialized unit functions as an independent full-service agency while operating as a separate business, but we are at our best when we collaborate together to become the agency best positioned to help our clients create meaningful connections with their consumers.</p>
+                <p>For over a decade we have been helping some of the country's most beloved brands to connect with their audience by creating, sharing and learning to be better together.</p>
+              </div>
+            </div>
+            <div class="x-stack__wrap">
+              <div class="x-stack" id="x-stack">
+                <div class="x-stack__par" data-par="0.06">
+                  <figure><img src="impress-team.webp" alt="The Havas Bangladesh team in red shirts" /><figcaption>the crew</figcaption></figure>
+                  <figure><img src="news-arm.webp" alt="Havas Bangladesh at the ARM 2019 awards" loading="lazy" /><figcaption>ARM 2019</figcaption></figure>
+                  <figure><img src="about1.webp" alt="The team brainstorming around a table" loading="lazy" /><figcaption>better together</figcaption></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec x-tight" id="facts" aria-label="Key facts">
+          <div class="x-wrap">
+            <p class="x-label x-rv" style="--c:var(--x-orange)">Key facts</p>
+            <div class="x-facts x-rv">
+              <div class="x-fact" style="--c:var(--x-red)"><span class="x-fact__fig" data-to="2" data-pre="#">#2</span><span class="x-fact__label">Second largest agency in Bangladesh by RECMA</span></div>
+              <div class="x-fact x-dark" style="--c:var(--x-orange)"><span class="x-fact__fig" data-to="2009" data-from="1950">2009</span><span class="x-fact__label">Havas started operating in Bangladesh</span></div>
+              <div class="x-fact x-dark" style="--c:var(--x-green)"><span class="x-fact__fig" data-to="18" data-suf="%">18%</span><span class="x-fact__label">Average growth rate over the years</span></div>
+              <div class="x-fact" style="--c:var(--x-blue)"><span class="x-fact__fig">KPI</span><span class="x-fact__label">A KPI-focused company, always successful in achieving it</span></div>
+            </div>
+            <div class="x-facts__note x-rv">
+              <span class="x-pill x-pill--line">Fastest growing agency locally</span>
+              <span class="x-pill x-pill--line">Received many awards and appreciation</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec" id="partners">
+          <span class="x-tri" style="--c:#3AAA35;--s:24px;right:7%;top:9%;--r:15deg"></span>
+          <div class="x-wrap">
+            <p class="x-label x-rv" style="--c:var(--x-blue)">Partners</p>
+            <h2 class="x-display x-h2 x-rv">Four agencies, one crew</h2>
+            <div class="x-ag x-rv">
+              <a href="https://havasbangladesh.com/havas-creative/" target="_blank" rel="noopener" style="--c:var(--x-red)"><span class="x-ag__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span><div><small>Havas</small><h3>Creative</h3><p>Ideas, campaigns and brand experiences.</p></div></a>
+              <a class="x-dark" href="https://havasbangladesh.com/havas-digital/" target="_blank" rel="noopener" style="--c:var(--x-orange)"><span class="x-ag__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span><div><small>Havas</small><h3>Digital</h3><p>Social, content and performance marketing.</p></div></a>
+              <a class="x-dark" href="https://havasbangladesh.com/havas-media/" target="_blank" rel="noopener" style="--c:var(--x-green)"><span class="x-ag__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span><div><small>Havas</small><h3>Media</h3><p>Smart media planning &amp; buying.</p></div></a>
+              <a href="https://havasbangladesh.com/havas-pr-celeb/" target="_blank" rel="noopener" style="--c:var(--x-blue)"><span class="x-ag__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span><div><small>Havas</small><h3>PR &amp; Celeb</h3><p>Reputation, PR and celebrity partnerships.</p></div></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec x-services" id="services">
+          <div class="x-wrap">
+            <p class="x-label x-rv" style="--c:var(--x-orange)">Our Expertise</p>
+            <h2 class="x-display x-h2 x-rv">We create some things for your successful future</h2>
+            <p class="x-intro x-rv">With a diverse portfolio and a focus on integrated solutions, we specialize in:</p>
+            <div class="x-svc" id="x-svc">
+              <div class="x-svc__row x-rv" style="--c:var(--x-red)"><button class="x-svc__btn" type="button" aria-expanded="false"><span class="x-svc__num">01</span><span class="x-svc__name">Advertising</span><span class="x-svc__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button><div class="x-svc__desc"><div><p>Big ideas and campaigns that move people and markets.</p></div></div></div>
+              <div class="x-svc__row x-rv" style="--c:var(--x-orange)"><button class="x-svc__btn" type="button" aria-expanded="false"><span class="x-svc__num">02</span><span class="x-svc__name">Media Planning &amp; Buying</span><span class="x-svc__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button><div class="x-svc__desc"><div><p>Data-led planning and aggressive, smart buying across every channel.</p></div></div></div>
+              <div class="x-svc__row x-rv" style="--c:var(--x-green)"><button class="x-svc__btn" type="button" aria-expanded="false"><span class="x-svc__num">03</span><span class="x-svc__name">Digital Marketing</span><span class="x-svc__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button><div class="x-svc__desc"><div><p>Social, search and performance work that drives real results.</p></div></div></div>
+              <div class="x-svc__row x-rv" style="--c:var(--x-blue)"><button class="x-svc__btn" type="button" aria-expanded="false"><span class="x-svc__num">04</span><span class="x-svc__name">Content Creation</span><span class="x-svc__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button><div class="x-svc__desc"><div><p>Films, photography and content made for every screen.</p></div></div></div>
+              <div class="x-svc__row x-rv" style="--c:var(--x-red)"><button class="x-svc__btn" type="button" aria-expanded="false"><span class="x-svc__num">05</span><span class="x-svc__name">Brand Experiences</span><span class="x-svc__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button><div class="x-svc__desc"><div><p>Events and activations that people remember.</p></div></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec x-work" id="work">
+          <div class="x-wrap">
+            <div class="x-work__head">
+              <div>
+                <p class="x-label x-rv" style="--c:var(--x-red)">Works</p>
+                <h2 class="x-display x-h2 x-rv">What we create for our customers</h2>
+              </div>
+              <p class="x-hand x-rv" style="color:var(--x-blue);transform:rotate(-4deg)">hover to peek inside ↓</p>
+            </div>
+            <div class="x-grid" id="x-grid">
+              <a class="x-card x-rv" href="https://havasbangladesh.com/portfolio/womens-horlicks-2/" target="_blank" rel="noopener" style="--dl:0s">
+                <div class="x-card__media"><img src="work-horlicks2.webp" alt="Women's Horlicks 2 campaign key visual" /><img class="x-alt" src="work-horlicks2.webp" alt="" aria-hidden="true" /><span class="x-pill x-red x-card__cat">Advertising</span></div>
+                <div class="x-card__info"><h3>Women's Horlicks 2</h3><p>Advertising, Marketing</p></div>
+              </a>
+              <a class="x-card x-rv" href="https://havasbangladesh.com/portfolio/durex/" target="_blank" rel="noopener" style="--dl:.1s">
+                <div class="x-card__media"><img src="work-durex.webp" alt="Durex campaign key visual" loading="lazy" /><img class="x-alt" src="work-durex.webp" alt="" aria-hidden="true" loading="lazy" /><span class="x-pill x-orange x-card__cat">Marketing</span></div>
+                <div class="x-card__info"><h3>Durex</h3><p>Advertising, Marketing</p></div>
+              </a>
+              <a class="x-card x-rv" href="https://havasbangladesh.com/portfolio/womens-horlicks/" target="_blank" rel="noopener" style="--dl:.2s">
+                <div class="x-card__media"><img src="work-horlicks.webp" alt="Women's Horlicks campaign key visual" loading="lazy" /><img class="x-alt" src="work-horlicks.webp" alt="" aria-hidden="true" loading="lazy" /><span class="x-pill x-green x-card__cat">Advertising</span></div>
+                <div class="x-card__info"><h3>Women's Horlicks</h3><p>Advertising</p></div>
+              </a>
+            </div>
+            <div class="x-video x-rv">
+              <img src="video-bg.webp" alt="" loading="lazy" />
+              <div class="x-video__in">
+                <h3>Specialized Solutions for Your Brand's Success</h3>
+                <a class="x-play" href="https://www.youtube.com/watch?v=uFD2Z6oVDkc" target="_blank" rel="noopener" aria-label="Watch the Havas Bangladesh video on YouTube"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3 1.5v13L14.5 8z"/></svg></a>
+              </div>
+            </div>
+          </div>
+          <div class="x-cursor" id="x-cursor" aria-hidden="true">View</div>
+        </section>
+        <section class="x-sec" id="impress" style="background:var(--x-cream)">
+          <span class="x-tri" style="--c:#E30613;--s:24px;right:6%;top:10%;--r:20deg"></span>
+          <div class="x-wrap">
+            <p class="x-label x-rv" style="--c:var(--x-red)">Our Wanderings</p>
+            <h2 class="x-display x-h2 x-rv">One of the largest conglomerates in Bangladesh</h2>
+            <div class="x-imp x-rv">
+              <article style="background:var(--x-bg)">
+                <div class="x-imp__media"><img src="impress-channeli.webp" alt="Channel i logo" loading="lazy" /></div>
+                <h3>TV Channel</h3>
+                <p>One of the top tier channels of the country. An infotainment channel with mass appeal.</p>
+              </article>
+              <article style="background:var(--x-bg)">
+                <div class="x-imp__media x-imp__media--solid" style="--c:var(--x-red)"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M6 20h36v20a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M5.2 13.4 38.6 5l1.9 7.6L7.1 21z"/><path d="m13 11.4 5.6 7.5M22.6 9l5.6 7.5M32.2 6.6l5.6 7.5"/><path d="M6 28h36"/></svg></div>
+                <h3>Production House</h3>
+                <p>One of the leading production houses of the country, known for its quality creations over the years. People eagerly wait for Impress Telefilm's upcoming movies.</p>
+              </article>
+              <article style="background:var(--x-bg)">
+                <div class="x-imp__media"><img src="impress-news.webp" alt="Anondo Alo and Shaptahik logos" loading="lazy" /></div>
+                <h3>News</h3>
+                <p>"Anondo Alo" is the leading female-targeted magazine. "Shaptahik" is a male-targeted magazine covering mainly political, economic and similar news.</p>
+              </article>
+              <article style="background:var(--x-bg)">
+                <div class="x-imp__media x-imp__media--small"><img src="impress-radio.webp" alt="FM radio logo" loading="lazy" /></div>
+                <h3>FM Radio</h3>
+                <p>An FM radio station with a loyal listener base for the quality of programs it airs.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec" id="team">
+          <span class="x-tri" style="--c:#1D71B8;--s:22px;left:5%;top:8%;--r:-15deg;--d:8s"></span>
+          <div class="x-wrap">
+            <p class="x-label x-rv" style="--c:var(--x-green)">The best team</p>
+            <h2 class="x-display x-h2 x-rv">Meet Havas creative crew</h2>
+            <div class="x-team__intro x-rv">
+              <p>We have a dynamic &amp; energetic planning team with the expertise of working for telco and big FMCG brands, driving innovations.</p>
+              <p>An aggressive buying team with more than 20 years of experience working for telco and big FMCG clients through smart buying, and a versatile, dynamic, spontaneous digital team.</p>
+              <p>Our creative and event team's remarkable prowess shines through in their ability to innovate and execute awe-inspiring concepts.</p>
+            </div>
+            <div class="x-team x-rv">
+              <article class="x-member"><div class="x-member__ph"><img src="team-ebne.webp" alt="Ebne Hasan Khan" loading="lazy" /></div><div class="x-member__plate" style="--c:var(--x-red)"><h3>Ebne Hasan Khan</h3><p>Vice Chairman</p></div></article>
+              <article class="x-member"><div class="x-member__ph"><img src="team-mazharul.webp" alt="Mazharul Chowdhury" loading="lazy" /></div><div class="x-member__plate x-dark" style="--c:var(--x-orange)"><h3>Mazharul Chowdhury</h3><p>Group Managing Director</p></div></article>
+              <article class="x-member"><div class="x-member__ph"><img src="team-sanjib.webp" alt="Sanjib Kumar Mitra" loading="lazy" /></div><div class="x-member__plate x-dark" style="--c:var(--x-green)"><h3>Sanjib Kumar Mitra</h3><p>Director, Finance</p></div></article>
+              <article class="x-member"><div class="x-member__ph"><img src="team-enamul.webp" alt="Md. Enamul Hoque" loading="lazy" /></div><div class="x-member__plate" style="--c:var(--x-blue)"><h3>Md. Enamul Hoque</h3><p>Asst. Director, Creative Operation</p></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec" id="clients" style="background:var(--x-cream);overflow:hidden">
+          <div class="x-wrap">
+            <p class="x-label x-rv" style="--c:var(--x-blue)">Partners</p>
+            <h2 class="x-display x-h2 x-rv">People who trust us</h2>
+            <p class="x-intro x-rv" style="font-size:17px;font-weight:500;font-family:var(--x-body)">Brands include ACI, Wonder, Neem, Savlon, Smart, Emirates, DAMAC, Incepta, Cute, Emami, Kesh King and others.</p>
+          </div>
+          <div class="x-logos x-rv">
+            <div class="x-logos__row">
+              <div class="x-logos__track">
+                <div class="x-logos__set">
+                  <div class="x-logo"><img src="client-01.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-02.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-03.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-04.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-05.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-06.webp" alt="Client logo" loading="lazy" /></div>
+                </div>
+                <div class="x-logos__set" aria-hidden="true">
+                  <div class="x-logo"><img src="client-01.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-02.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-03.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-04.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-05.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-06.webp" alt="" loading="lazy" /></div>
+                </div>
+              </div>
+            </div>
+            <div class="x-logos__row x-logos__row--rev">
+              <div class="x-logos__track">
+                <div class="x-logos__set">
+                  <div class="x-logo"><img src="client-07.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-08.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-09.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-10.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-11.webp" alt="Client logo" loading="lazy" /></div><div class="x-logo"><img src="client-12.webp" alt="Client logo" loading="lazy" /></div>
+                </div>
+                <div class="x-logos__set" aria-hidden="true">
+                  <div class="x-logo"><img src="client-07.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-08.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-09.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-10.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-11.webp" alt="" loading="lazy" /></div><div class="x-logo"><img src="client-12.webp" alt="" loading="lazy" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec" id="news">
+          <span class="x-tri" style="--c:#F39200;--s:26px;right:8%;top:8%;--r:10deg"></span>
+          <div class="x-wrap">
+            <p class="x-label x-rv" style="--c:var(--x-red)">News</p>
+            <h2 class="x-display x-h2 x-rv">Awards &amp; stories</h2>
+            <div class="x-news x-rv">
+              <a href="https://havasbangladesh.com/com-award-2018/" target="_blank" rel="noopener">
+                <div class="x-news__media"><img src="news-com-award.webp" alt="Havas Bangladesh at Com Award 2018" loading="lazy" /><span class="x-pill x-red">Award</span></div>
+                <time datetime="2022-01-04">January 4, 2022</time>
+                <h3>Com Award 2018</h3>
+                <span class="x-news__more">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
+              </a>
+              <a href="https://havasbangladesh.com/silver-for-best-video-goes-to-havas-digital/" target="_blank" rel="noopener">
+                <div class="x-news__media"><img src="news-silver.webp" alt="Havas Digital receiving Silver for Best Video" loading="lazy" /><span class="x-pill x-red">Award</span></div>
+                <time datetime="2021-12-04">December 4, 2021</time>
+                <h3>Silver for Best Video goes to HAVAS Digital</h3>
+                <p>For the campaign Dettol Channel I Porichchonno.</p>
+                <span class="x-news__more">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
+              </a>
+              <a href="https://havasbangladesh.com/arm-2019/" target="_blank" rel="noopener">
+                <div class="x-news__media"><img src="news-arm.webp" alt="Havas Bangladesh at ARM 2019" loading="lazy" /><span class="x-pill x-red">Award</span></div>
+                <time datetime="2021-11-04">November 4, 2021</time>
+                <h3>ARM 2019</h3>
+                <span class="x-news__more">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="x-sec x-faq" id="faq">
+          <div class="x-wrap x-faq__grid">
+            <div class="x-faq__side">
+              <p class="x-label x-rv" style="--c:var(--x-green)">Questions</p>
+              <h2 class="x-display x-h2 x-rv">Things you might ask</h2>
+              <p class="x-hand x-rv" style="color:var(--x-red);transform:rotate(-3deg)">still curious? just ask us →</p>
+            </div>
+            <div class="x-faq__list" id="x-faq">
+              <div class="x-faq__item x-rv" style="--c:var(--x-red)"><button class="x-faq__q" type="button" aria-expanded="false">What does Havas Bangladesh do?<span class="x-faq__ic" aria-hidden="true"></span></button><div class="x-faq__a"><div><p>We're a collective of agencies covering advertising, media planning &amp; buying, digital marketing, content creation, brand experiences and PR &amp; celeb.</p></div></div></div>
+              <div class="x-faq__item x-rv" style="--c:var(--x-orange)"><button class="x-faq__q" type="button" aria-expanded="false">Who are you part of?<span class="x-faq__ic" aria-hidden="true"></span></button><div class="x-faq__a"><div><p>We're an entity of Impress Group, one of the largest and most diversified conglomerates in Bangladesh.</p></div></div></div>
+              <div class="x-faq__item x-rv" style="--c:var(--x-green)"><button class="x-faq__q" type="button" aria-expanded="false">How long have you been in Bangladesh?<span class="x-faq__ic" aria-hidden="true"></span></button><div class="x-faq__a"><div><p>Havas started its operation in Bangladesh in 2009.</p></div></div></div>
+              <div class="x-faq__item x-rv" style="--c:var(--x-blue)"><button class="x-faq__q" type="button" aria-expanded="false">Can your agencies work together on one brief?<span class="x-faq__ic" aria-hidden="true"></span></button><div class="x-faq__a"><div><p>Yes. Each unit runs as an independent full-service agency, but we're at our best when we collaborate on one integrated solution.</p></div></div></div>
+              <div class="x-faq__item x-rv" style="--c:var(--x-red)"><button class="x-faq__q" type="button" aria-expanded="false">How do I start a project or join the team?<span class="x-faq__ic" aria-hidden="true"></span></button><div class="x-faq__a"><div><p>Email <a class="link" href="mailto:info@havasbangladesh.com">info@havasbangladesh.com</a> or call <a class="link" href="tel:+88029884481">+88029884481</a> and we'll take it from there.</p></div></div></div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="x-foot" id="contact">
+        <span class="x-tri" style="--c:#F39200;--s:30px;right:8%;top:12%;--r:15deg"></span>
+        <span class="x-tri" style="--c:#3AAA35;--s:20px;left:46%;top:6%;--r:-25deg;--d:8s"></span>
+        <div class="x-wrap">
+          <h2 class="x-display x-foot__big" id="x-big" aria-label="Let's build better together"><span class="x-w">Let's build</span> <span class="x-w">better</span> <span class="x-w">together</span></h2>
+          <p class="x-foot__lead">Join us in creating a future of mutual success. At Havas, your success is our success. Together, we craft campaigns, drive innovation, and build connections that matter.</p>
+          <div class="x-foot__cta">
+            <button class="x-btn x-btn--red x-btn--big x-mag" type="button" data-talk>Let's talk <span class="x-btn__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button>
+            <div class="x-foot__contact"><span>or call us 24/7</span><a href="tel:+88029884481">+88029884481</a></div>
+          </div>
+          <div class="x-foot__cols">
+            <div>
+              <a class="x-chip" href="#top" aria-label="Back to top"><img src="logo.webp" alt="Havas Group Bangladesh" /></a>
+              <p class="x-hand" style="margin-top:18px;font-size:28px">Made in Dhaka, Bangladesh</p>
+            </div>
+            <div>
+              <h4>Menu</h4>
+              <ul><li><a href="#about">About</a></li><li><a href="#partners">Partners</a></li><li><a href="#work">Work</a></li><li><a href="#team">Team</a></li><li><a href="#news">News</a></li><li><a href="mailto:info@havasbangladesh.com?subject=Careers">Careers</a></li><li><a href="#contact">Contacts</a></li></ul>
+            </div>
+            <div>
+              <h4>Social</h4>
+              <ul><li><a href="https://www.youtube.com/channel/UCz0u7fgi2EIKm3oKfFmURLA/featured?view_as=subscriber" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://www.facebook.com/HavasBangladesh/" target="_blank" rel="noopener">Facebook</a></li></ul>
+            </div>
+            <div>
+              <h4>Write to us</h4>
+              <p class="x-foot__mail"><a href="mailto:info@havasbangladesh.com">info@havasbangladesh.com</a></p>
+              <ul><li><a href="https://www.google.com/maps/place/Havas+I+Positive/@23.7833341,90.3952006,19z/data=!3m1!4b1!4m6!3m5!1s0x3755c7fc102958ef:0x4e06bcc5db35f4a!8m2!3d23.7833329!4d90.3958443!16s%2Fg%2F11f5_jr6tm" target="_blank" rel="noopener">See on the map →</a></li></ul>
+            </div>
+          </div>
+          <div class="x-foot__offices">
+            <div><h4>Havas Media</h4><address>House # 40, Road # 20, New DOHS, Mohakhali, Dhaka-1212, Bangladesh<br /><a href="tel:+88029884481">Tel: +88029884481</a></address></div>
+            <div><h4>Havas Digital</h4><address>House # 40, Road # 20, New DOHS, Mohakhali, Dhaka-1212, Bangladesh<br /><a href="tel:+88029884481">Tel: +88029884481</a></address></div>
+            <div><h4>Havas Creative</h4><address>House # 40, Road # 20, New DOHS, Mohakhali, Dhaka-1212, Bangladesh<br /><a href="tel:+88028872581">Tel: +88028872581</a></address></div>
+            <div><h4>Havas Media Group</h4><address>40, Shahid Tajuddin Ahmed Sarani, Tejgaon I/A, Dhaka-1208, Bangladesh<br /><a href="tel:+889116165">Tel: +8891161-65</a></address></div>
+          </div>
+          <div class="x-foot__base">
+            <p>© Copyright 2025, All Rights Reserved by Havas Bangladesh.</p>
+            <p>Privacy Policy · Terms &amp; Conditions</p>
+          </div>
+        </div>
+        <div class="x-foot__tris" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </footer>
+    </div>
+
+    <div class="x-menu" id="x-menu" aria-hidden="true">
+      <button class="x-close" type="button" aria-label="Close menu" data-menu-close>×</button>
+      <nav aria-label="Mobile">
+        <a href="#about">About</a><a href="#partners">Partners</a><a href="#work">Work</a><a href="#team">Team</a><a href="#news">News</a>
+      </nav>
+      <div>
+        <button class="x-btn x-btn--red x-btn--big" type="button" data-talk>Let's Talk <span class="x-btn__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button>
+        <p class="x-hours" style="text-align:left;margin-top:16px;display:block">Have any questions? <a href="tel:+88029884481">+88029884481</a></p>
+      </div>
+    </div>
+
+    <div class="x-ov" id="x-ov" role="dialog" aria-modal="true" aria-labelledby="x-ov-title" aria-hidden="true">
+      <div class="x-ov__scrim" data-ov-close></div>
+      <div class="x-ov__panel">
+        <button class="x-close" type="button" aria-label="Close contact" data-ov-close>×</button>
+        <div class="x-ov__grid">
+          <div>
+            <h2 class="x-display" id="x-ov-title"><span>Be near</span><span>Havas</span><span class="x-ov__small">Get in touch</span></h2>
+            <span class="x-hand" style="font-size:28px">Reach out to discover how we can elevate your brand.</span>
+            <img class="x-ov__plane" src="contact.webp" alt="A colourful paper plane" />
+          </div>
+          <div>
+            <div class="x-ov__info">
+              <p><span>Enquiries · Interested in working with us?</span><a href="mailto:info@havasbangladesh.com">info@havasbangladesh.com</a></p>
+              <p><span>Phone</span><a href="tel:+88029884481">+88029884481</a></p>
+              <p><span>Havas Media</span>House # 40, Road # 20, New DOHS, Mohakhali, Dhaka-1212, Bangladesh</p>
+              <div class="x-ov__social">
+                <a class="x-pill x-red" href="https://www.youtube.com/channel/UCz0u7fgi2EIKm3oKfFmURLA/featured?view_as=subscriber" target="_blank" rel="noopener">YouTube</a>
+                <a class="x-pill x-blue" href="https://www.facebook.com/HavasBangladesh/" target="_blank" rel="noopener">Facebook</a>
+              </div>
+            </div>
+            <form class="x-form" id="x-form" novalidate>
+              <label>Name<input name="name" type="text" autocomplete="name" /><span class="x-err" aria-live="polite"></span></label>
+              <label>Email<input name="email" type="email" autocomplete="email" /><span class="x-err" aria-live="polite"></span></label>
+              <label>Message<textarea name="message" rows="4"></textarea><span class="x-err" aria-live="polite"></span></label>
+              <div><button class="x-btn x-mag" type="submit">Send <span class="x-btn__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button></div>
+            </form>
+            <div class="x-form x-thanks" id="x-thanks" hidden tabindex="-1">
+              <h3>Thank you!</h3>
+              <p>Your message is in. We'll get back to you soon.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="hark.js"></script>
+    <script>
+      (function () {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+        var $ = function (s, c) { return (c || document).querySelector(s); };
+        var $$ = function (s, c) { return [].slice.call((c || document).querySelectorAll(s)); };
+
+        // sticky header: hide on scroll down, show on scroll up
+        var header = $("#x-header"), lastY = window.scrollY, ticking = false;
+        function onScroll() {
+          var y = window.scrollY;
+          header.classList.toggle("is-scrolled", y > 20);
+          if (y > lastY && y > 140) header.classList.add("is-hidden");
+          else header.classList.remove("is-hidden");
+          lastY = y;
+          parallax();
+          ticking = false;
+        }
+        window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+
+        // parallax on the photo stack
+        var par = $$("[data-par]");
+        function parallax() {
+          if (reduce) return;
+          par.forEach(function (el) {
+            var r = el.parentNode.getBoundingClientRect();
+            var off = (r.top + r.height / 2 - window.innerHeight / 2) * parseFloat(el.dataset.par);
+            el.style.transform = "translateY(" + (-off).toFixed(1) + "px)";
+          });
+        }
+
+        // reveal on scroll
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
+        }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+        $$(".x-rv, #x-stack, #x-big").forEach(function (el) { io.observe(el); });
+
+        // footer headline: split into letters
+        var big = $("#x-big"), n = 0;
+        $$(".x-w", big).forEach(function (w) {
+          var t = w.textContent; w.textContent = ""; w.setAttribute("aria-hidden", "true");
+          t.split("").forEach(function (ch) {
+            var s = document.createElement("span");
+            s.className = "x-ch"; s.style.setProperty("--i", n++);
+            s.textContent = ch === " " ? "\u00a0" : ch;
+            w.appendChild(s);
+          });
+        });
+
+        // magnetic buttons
+        if (fine && !reduce) {
+          $$(".x-mag").forEach(function (b) {
+            b.addEventListener("mousemove", function (e) {
+              var r = b.getBoundingClientRect();
+              var x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+              b.style.transform = "translate(" + x * 0.25 + "px," + y * 0.35 + "px)";
+            });
+            b.addEventListener("mouseleave", function () { b.style.transform = ""; });
+          });
+        }
+
+        // "View" cursor over the project grid
+        var grid = $("#x-grid"), cur = $("#x-cursor");
+        if (fine) {
+          grid.classList.add("has-cursor");
+          var cx = 0, cy = 0, tx = 0, ty = 0, running = false;
+          var colors = ["#E30613", "#F39200", "#3AAA35", "#1D71B8", "#E30613", "#F39200"];
+          function loop() {
+            cx += (tx - cx) * (reduce ? 1 : 0.2); cy += (ty - cy) * (reduce ? 1 : 0.2);
+            cur.style.left = cx + "px"; cur.style.top = cy + "px";
+            if (running) requestAnimationFrame(loop);
+          }
+          grid.addEventListener("mouseenter", function (e) { tx = cx = e.clientX; ty = cy = e.clientY; running = true; loop(); });
+          grid.addEventListener("mousemove", function (e) {
+            tx = e.clientX; ty = e.clientY;
+            var card = e.target.closest(".x-card");
+            cur.classList.toggle("is-on", !!card);
+            if (card) cur.style.background = colors[$$(".x-card", grid).indexOf(card)];
+          });
+          grid.addEventListener("mouseleave", function () { running = false; cur.classList.remove("is-on"); });
+        }
+
+        // services: hover fills on desktop, tap toggles everywhere
+        var rows = $$(".x-svc__row");
+        function setRow(row, open) {
+          row.classList.toggle("is-open", open);
+          $(".x-svc__btn", row).setAttribute("aria-expanded", open);
+        }
+        rows.forEach(function (row) {
+          var btn = $(".x-svc__btn", row);
+          btn.addEventListener("click", function () {
+            var open = !row.classList.contains("is-open");
+            rows.forEach(function (r) { setRow(r, false); });
+            setRow(row, open);
+          });
+          if (fine) {
+            row.addEventListener("mouseenter", function () { rows.forEach(function (r) { if (r !== row) setRow(r, false); }); setRow(row, true); });
+            row.addEventListener("mouseleave", function () { setRow(row, false); });
+          }
+        });
+
+        // FAQ accordion, one open at a time
+        var items = $$(".x-faq__item");
+        items.forEach(function (it) {
+          $(".x-faq__q", it).addEventListener("click", function () {
+            var open = !it.classList.contains("is-open");
+            items.forEach(function (o) { o.classList.remove("is-open"); $(".x-faq__q", o).setAttribute("aria-expanded", "false"); });
+            if (open) { it.classList.add("is-open"); this.setAttribute("aria-expanded", "true"); }
+          });
+        });
+
+        // key facts: count up when they scroll into view
+        if (!reduce) {
+          var counters = $$("[data-to]");
+          var fmt = function (el, v) { el.textContent = (el.dataset.pre || "") + v + (el.dataset.suf || ""); };
+          var cio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              cio.unobserve(e.target);
+              var el = e.target, from = +(el.dataset.from || 0), to = +el.dataset.to, t0 = null;
+              function tick(t) {
+                if (!t0) t0 = t;
+                var p = Math.min(1, (t - t0) / 1600), k = 1 - Math.pow(1 - p, 3);
+                fmt(el, Math.round(from + (to - from) * k));
+                if (p < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+            });
+          }, { threshold: 0.5 });
+          counters.forEach(function (el) { fmt(el, el.dataset.from || 0); cio.observe(el); });
+        }
+
+        // mobile menu
+        var menu = $("#x-menu"), burger = $("#x-burger");
+        function setMenu(open) {
+          menu.classList.toggle("is-open", open);
+          menu.setAttribute("aria-hidden", !open);
+          burger.setAttribute("aria-expanded", open);
+          document.body.classList.toggle("x-lock", open);
+        }
+        burger.addEventListener("click", function () { setMenu(true); });
+        $$("[data-menu-close], #x-menu nav a").forEach(function (el) { el.addEventListener("click", function () { setMenu(false); }); });
+
+        // contact overlay
+        var ov = $("#x-ov"), lastFocus = null;
+        function setOv(open) {
+          if (open) { lastFocus = document.activeElement; setMenu(false); }
+          ov.classList.toggle("is-open", open);
+          ov.setAttribute("aria-hidden", !open);
+          document.body.classList.toggle("x-lock", open);
+          if (open) setTimeout(function () { $(".x-close", ov).focus(); }, 50);
+          else if (lastFocus) lastFocus.focus();
+        }
+        $$("[data-talk]").forEach(function (b) { b.addEventListener("click", function () { setOv(true); }); });
+        $$("[data-ov-close]").forEach(function (b) { b.addEventListener("click", function () { setOv(false); }); });
+        document.addEventListener("keydown", function (e) {
+          if (e.key !== "Escape") return;
+          if (ov.classList.contains("is-open")) setOv(false);
+          else if (menu.classList.contains("is-open")) setMenu(false);
+        });
+
+        // form: client-side validation and inline thanks, no network
+        var form = $("#x-form");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var ok = true;
+          var checks = {
+            name: function (v) { return v.trim().length >= 2 ? "" : "Tell us your name."; },
+            email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? "" : "We need a valid email."; },
+            message: function (v) { return v.trim().length >= 5 ? "" : "Say a little more."; }
+          };
+          Object.keys(checks).forEach(function (k) {
+            var f = form.elements[k], msg = checks[k](f.value);
+            f.classList.toggle("is-bad", !!msg);
+            f.setAttribute("aria-invalid", !!msg);
+            f.parentNode.querySelector(".x-err").textContent = msg;
+            if (msg && ok) { ok = false; f.focus(); }
+          });
+          if (!ok) return;
+          form.hidden = true;
+          var t = $("#x-thanks"); t.hidden = false; t.focus();
+        });
+
+        onScroll();
+      })();
+    </script>
+  </body>
+</html>
